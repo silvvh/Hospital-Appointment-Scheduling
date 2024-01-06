@@ -7,6 +7,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -23,7 +24,7 @@ public class Patient implements Serializable {
     private String cpf;
     private String password;
     @OneToMany(mappedBy = "patient")
-    private HashSet<Appointment> appointments;
+    private Set<Appointment> appointments = new HashSet<>();
 
     public Patient(UUID uuid, String firstName, String lastName, String email, String phone, String cpf, String password) {
         this.patientUUID = uuid;
@@ -36,14 +37,6 @@ public class Patient implements Serializable {
     }
 
     public Patient() {}
-
-    public UUID getUuid() {
-        return patientUUID;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.patientUUID = uuid;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -91,6 +84,22 @@ public class Patient implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public UUID getPatientUUID() {
+        return patientUUID;
+    }
+
+    public void setPatientUUID(UUID patientUUID) {
+        this.patientUUID = patientUUID;
+    }
+
+    public Set<Appointment> getAppointments() {
+        return appointments;
+    }
+
+    public void setAppointments(Appointment appointment) {
+        appointments.add(appointment);
     }
 
     @Override

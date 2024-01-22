@@ -30,7 +30,7 @@ public class MessageController {
     public ResponseEntity<MessageDTO> getById(@PathVariable UUID id) {
         return ResponseEntity.ok().body(messageService.findById(id));
     }
-    @PostMapping(value = "/contact")
+    @PostMapping()
     public ResponseEntity<MessageDTO> create(@RequestBody @Valid MessageDTO messageDTO) {
         URI url = ServletUriComponentsBuilder.fromCurrentRequestUri().buildAndExpand(messageService.create(messageDTO)).toUri();
         return ResponseEntity.created(url).build();

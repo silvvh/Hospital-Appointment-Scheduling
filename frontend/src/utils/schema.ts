@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { isValidCPF, isValidPhoneNumber } from "./validations";
-
+import Select from 'react-select'
 
 export const signUpSchema = z.object({
   firstName: z
@@ -34,6 +34,8 @@ export const contactSchema = z.object({
     }),
     message: z.string().min(20, {message: "A mensagem deve conter no mínimo 20 caracteres"})
 });
+
+
 
 export type SignUpSchema = z.infer<typeof signUpSchema>;
 export type SignInSchema = z.infer<typeof signInSchema>;

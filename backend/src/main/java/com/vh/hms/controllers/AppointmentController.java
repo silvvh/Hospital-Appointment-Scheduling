@@ -47,12 +47,12 @@ public class AppointmentController {
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
         return ResponseEntity.ok().body(service.findAllByPatient(pageRequest, patient));
     }
-
     @PostMapping("/booking")
     public ResponseEntity<Void> booking(@RequestBody @Valid AppointmentRequestDTO request) {
         URI url = ServletUriComponentsBuilder.fromCurrentRequestUri().buildAndExpand(service.create(request)).toUri();
         return ResponseEntity.created(url).build();
     }
+
 
     @PatchMapping("/cancel/{id}")
     public ResponseEntity<Void> cancel(@PathVariable UUID id) {

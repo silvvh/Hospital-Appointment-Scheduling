@@ -7,9 +7,11 @@ import ButtonOutline from "../sub/buttons/ButtonOutline";
 import { useForm, Controller } from "react-hook-form";
 import { ContactSchema, contactSchema } from "@/utils/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Select from 'react-select';
 
-export default function ContactForm() {
+export default function AppointmentForm() {
   const service = new MessageService();
+  const [options, setOptions] = useState([]);
   const [success, setSuccess] = useState<boolean>(false);
   const {
     handleSubmit,
@@ -61,7 +63,7 @@ export default function ContactForm() {
         {!success ? (
           <>
             <Typography component="h1" variant="h5">
-              Para entrar em contato, preencha o formulário.
+              Criar uma consulta
             </Typography>
             <Box
               sx={{ mt: 1 }}

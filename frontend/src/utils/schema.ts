@@ -1,6 +1,12 @@
 import { z } from "zod";
 import { isValidCPF, isValidPhoneNumber } from "./validations";
-import Select from 'react-select'
+
+export const appointmentSchema = z.object({
+  specialization: z.string(),
+  doctor: z.string(),
+  date: z.date(),
+  time: z.string(),
+});
 
 export const signUpSchema = z.object({
   firstName: z
@@ -40,3 +46,4 @@ export const contactSchema = z.object({
 export type SignUpSchema = z.infer<typeof signUpSchema>;
 export type SignInSchema = z.infer<typeof signInSchema>;
 export type ContactSchema = z.infer<typeof contactSchema>;
+export type AppointmentSchema = z.infer<typeof appointmentSchema>

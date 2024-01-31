@@ -17,7 +17,7 @@ export default function Page() {
                 p: 2,
                 display: "flex",
                 flexDirection: "column",
-                justifyContent: "start",
+                justifyContent: "center",
                 mt: 6,  
               }}
             >

@@ -1,8 +1,11 @@
-import Dashboard from "@/components/main/Dashboard";
-export default function Page() {
+import Dashboard from "@/components/main/dashboards/Dashboard";
+
+const Page = () => {
   return (
-    <>
-        <Dashboard />
-    </>
+    <main>
+      <Dashboard />
+    </main>
   );
-}
+};
+
+export default Page;

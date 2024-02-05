@@ -5,6 +5,7 @@ import ButtonPrimary from "../sub/buttons/ButtonPrimary";
 import {motion} from "framer-motion";
 import ScrollAnimationWrapper from "./ScrollAnimationWrapper";
 import getScrollAnimation from "@/utils/getScrollAnimation";
+import Link from "next/link";
 
 const Hero = ({
   listUser = [
@@ -43,7 +44,10 @@ const Hero = ({
               <p className="text-black-500 mt-4 mb-6">
                 Estamos prontos para ajudar e providenciar cuidados à sua saúde.
               </p>
-              <ButtonPrimary>Comece Aqui</ButtonPrimary>
+              <ButtonPrimary
+              >
+                <Link href="/auth/sign-up">Comece Aqui</Link>
+                </ButtonPrimary>
             </div>
             <div className="flex w-full">
               <motion.div className="h-full w-full" variants={scrollAnimation}>

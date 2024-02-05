@@ -12,7 +12,7 @@ import {
 import LibraryAddIcon from "@mui/icons-material/LibraryAdd";
 import Link from "next/link";
 
-export default function Appointment() {
+export default function AppointmentButton() {
 
 
   const theme = useTheme();

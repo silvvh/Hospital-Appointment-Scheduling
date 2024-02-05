@@ -8,25 +8,19 @@ import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import Logout from "@mui/icons-material/Logout";
 export const mainListItems = (
   <React.Fragment>
-    <ListItemButton>
+    <ListItemButton href="/auth/sign-in/dashboard">
       <ListItemIcon>
         <DashboardIcon color="primary" />
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <EventAvailableIcon color="primary" />
-      </ListItemIcon>
-      <ListItemText primary="Marcar Consulta" />
-    </ListItemButton>
-    <ListItemButton>
+    <ListItemButton href="/auth/sign-in/dashboard/my-appointments">
       <ListItemIcon>
         <MenuBookIcon color="primary" />
       </ListItemIcon>
       <ListItemText primary="Histórico" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton href="/auth/sign-in">
       <ListItemIcon>
         <Logout color="primary" />
       </ListItemIcon>
@@ -34,3 +28,12 @@ export const mainListItems = (
     </ListItemButton>
   </React.Fragment>
 );
+
+export const patientItem = (
+  <ListItemButton href="/auth/sign-in/dashboard/book-an-appointment">
+  <ListItemIcon>
+    <EventAvailableIcon color="primary" />
+  </ListItemIcon>
+  <ListItemText primary="Marcar Consulta" />
+</ListItemButton>
+)

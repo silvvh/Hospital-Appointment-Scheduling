@@ -36,7 +36,7 @@ public class MessageController {
         URI url = ServletUriComponentsBuilder.fromCurrentRequestUri().buildAndExpand(messageService.create(messageDTO)).toUri();
         return ResponseEntity.created(url).build();
     }
-
+    
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable UUID id) {
         messageService.deleteById(id);

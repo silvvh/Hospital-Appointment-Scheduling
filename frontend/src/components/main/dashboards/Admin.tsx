@@ -59,9 +59,9 @@ export default function Admin() {
           >
             <DashboardButton
               icon={<LocalHospitalIcon fontSize="large"/>}
-              title="Gerenciar Médicos"
-              subtitle="Cadastrar, atualizar e deletar"
-              link="/"
+              title="Adicionar Médico"
+              subtitle="Cadastrar um novo médico"
+              link="/auth/sign-in/dashboard/doctors/add"
             />
           </Paper>
         </Grid>

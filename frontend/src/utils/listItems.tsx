@@ -69,11 +69,11 @@ export const adminItems = (
       </ListItemIcon>
       <ListItemText primary="Consultas" />
     </ListItemButton>
-    <ListItemButton href="/auth/sign-in/dashboard/">
+    <ListItemButton href="/auth/sign-in/dashboard/doctors/add">
       <ListItemIcon>
         <ManageAccountsIcon color="primary" />
       </ListItemIcon>
-      <ListItemText primary="Gerenciar Médicos" />
+      <ListItemText primary="Adicionar Médico" />
     </ListItemButton>
     <ListItemButton href="/auth/sign-in/dashboard/messages">
       <ListItemIcon>

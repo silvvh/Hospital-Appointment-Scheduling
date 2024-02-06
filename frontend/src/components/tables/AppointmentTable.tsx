@@ -25,7 +25,7 @@ interface Appointment {
 }
 
 const token = Cookies.get("token") || "";
-const decodedToken : DecodedToken = jwtDecode(token, { header: true });
+const decodedToken : DecodedToken = jwtDecode(token);
 const headers = {
   Authorization: `Bearer ${token}`,
   "Content-Type": "application/json",

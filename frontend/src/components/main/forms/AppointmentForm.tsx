@@ -13,21 +13,15 @@ import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs, { Dayjs } from "dayjs";
 import Cookies from "js-cookie";
+import { mappedSpecializations, specializations } from "@/utils/specializations";
 
-const specializations = [
-  "Cardiologia",
-  "Pediatria",
-  "Oftalmologia",
-  "Neurologia",
-  "Ortopedia",
-  "Clínica",
-  "Radiologia",
-].map((value) => ({ value }));
+
 
 const eightAM = dayjs().set("hour", 8).startOf("hour");
 const sixPM = dayjs().set("hour", 18).startOf("hour");
 
 const token = Cookies.get("token");
+
 
 export default function AppointmentForm() {
   const doctorService = new DoctorService();
@@ -116,7 +110,7 @@ export default function AppointmentForm() {
         sx={{
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
+          alignItems: "start",
         }}
       >
           <Box sx={{ mt: 1 }} component="form" onSubmit={onSubmit} noValidate>
@@ -132,7 +126,7 @@ export default function AppointmentForm() {
               onChange={(e) => setSpecialization(e.target.value)}
               autoFocus
             >
-              {specializations.map((option) => (
+              {mappedSpecializations.map((option) => (
                 <MenuItem key={option.value} value={option.value}>
                   {option.value}
                 </MenuItem>

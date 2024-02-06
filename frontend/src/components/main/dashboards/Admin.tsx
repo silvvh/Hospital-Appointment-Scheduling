@@ -78,7 +78,7 @@ export default function Admin() {
               icon={<BookIcon fontSize="large" />}
               title="Lista de Consultas"
               subtitle="Visualizar Consultas"
-              link="/"
+              link="/auth/sign-in/dashboard/appointments"
             />
           </Paper>
         </Grid>
@@ -95,7 +95,7 @@ export default function Admin() {
               icon={<EmailIcon fontSize="large" />}
               title="Mensagens Recebidas"
               subtitle="Visualizar Mensagens"
-              link="/"
+              link="/auth/sign-in/dashboard/messages"
             />
           </Paper>
         </Grid>

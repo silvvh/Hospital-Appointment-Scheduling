@@ -81,7 +81,7 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 const token = Cookies.get("token") || "";
-const decodedToken: DecodedToken = jwtDecode(token,  { header: true });
+const decodedToken: DecodedToken = jwtDecode(token);
 
 export default function DashBoardBar() {
   const [open, setOpen] = useState<boolean>(false); 

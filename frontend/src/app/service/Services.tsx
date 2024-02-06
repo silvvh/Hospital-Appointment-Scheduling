@@ -15,6 +15,10 @@ export class MessageService {
     return axiosInstance.post("/messages", body);
   }
 
+  delete(headers: AxiosRequestConfig, id: string) {
+    return axiosInstance.delete(`/messages/${id}`, headers);
+  };
+
   getAll(
     headers: AxiosRequestConfig,
     params: {
@@ -140,15 +144,12 @@ export class DoctorService {
       password: string;
     },
     headers: AxiosRequestConfig,
-    email: string,
+    email: string
   ) {
     return axiosInstance.put(`/doctors/${email}`, body, headers);
   }
 
-  delete(
-    headers: AxiosRequestConfig,
-    email: string,
-  ) {
+  delete(headers: AxiosRequestConfig, email: string) {
     return axiosInstance.delete(`/doctors/${email}`, headers);
   }
 

@@ -1,10 +1,17 @@
 "use client";
-import { Box, Container, Grid, Paper } from "@mui/material";
+import { Container, Grid, Paper } from "@mui/material";
 import AppointmentTable from "../tables/AppointmentTable";
+import { DecodedToken } from "../main/dashboards/Dashboard";
+import { jwtDecode } from "jwt-decode";
+import Cookies from "js-cookie";
+import DetailedAppointmentTable from "../tables/DetailedAppointmentTable";
+const token = Cookies.get("token") || "";
+const decodedToken: DecodedToken = jwtDecode(token);
 
 export default function AppointmentList() {
+  const { role } = decodedToken;
   return (
-    <Container maxWidth="lg" sx={{ mt: 10, mb: 4 }}>
+    <Container maxWidth="lg" sx={{ mt: 12, mb: 4 }}>
       <Grid container>
         <Grid item xs={12}>
           <Paper
@@ -12,11 +19,11 @@ export default function AppointmentList() {
               p: 2,
               display: "flex",
               flexDirection: "column",
-              overflowX: "auto"
+              overflowX: "auto",
             }}
           >
             {" "}
-            <AppointmentTable />
+            {role === "ADMIN" ? <DetailedAppointmentTable /> : <AppointmentTable />}
           </Paper>
         </Grid>
       </Grid>

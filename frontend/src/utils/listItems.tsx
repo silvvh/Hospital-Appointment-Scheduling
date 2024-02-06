@@ -51,19 +51,19 @@ export const patientItem = (
 
 export const adminItems = (
   <>
-    <ListItemButton href="/auth/sign-in/dashboard/">
+    <ListItemButton href="/auth/sign-in/dashboard/doctors">
       <ListItemIcon>
         <RecentActorsIcon color="primary" />
       </ListItemIcon>
       <ListItemText primary="Médicos" />
     </ListItemButton>
-    <ListItemButton href="/auth/sign-in/dashboard/">
+    <ListItemButton href="/auth/sign-in/dashboard/patients">
       <ListItemIcon>
         <RecentActorsIcon color="primary" />
       </ListItemIcon>
       <ListItemText primary="Pacientes" />
     </ListItemButton>
-    <ListItemButton href="/auth/sign-in/dashboard/">
+    <ListItemButton href="/auth/sign-in/dashboard/appointments">
       <ListItemIcon>
       <ContentPasteIcon color="primary" />
       </ListItemIcon>
@@ -75,7 +75,7 @@ export const adminItems = (
       </ListItemIcon>
       <ListItemText primary="Gerenciar Médicos" />
     </ListItemButton>
-    <ListItemButton href="/auth/sign-in/dashboard/">
+    <ListItemButton href="/auth/sign-in/dashboard/messages">
       <ListItemIcon>
         <EmailIcon color="primary" />
       </ListItemIcon>

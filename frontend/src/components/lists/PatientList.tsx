@@ -1,5 +1,5 @@
 "use client";
-import { Box, Container, Grid, Paper } from "@mui/material";
+import { Container, Grid, Paper } from "@mui/material";
 import PatientTable from "../tables/PatientTable";
 
 export default function PatientList() {

@@ -14,6 +14,26 @@ export class MessageService {
   }) {
     return axiosInstance.post("/messages", body);
   }
+
+  getAll(
+    headers: AxiosRequestConfig,
+    params: {
+      page?: number;
+      linesPerPage?: number;
+      direction?: string;
+      orderBy?: string;
+    }
+  ) {
+    return axiosInstance.get("/messages", {
+      ...headers,
+      params: {
+        page: params.page || 0,
+        linesPerPage: params.linesPerPage || 4,
+        direction: params.direction || "ASC",
+        orderBy: params.orderBy || "sender",
+      },
+    });
+  }
 }
 
 export class AuthService {
@@ -33,9 +53,7 @@ export class AuthService {
     return axiosInstance.post("/auth/register", body);
   }
 
-  current(
-    headers: AxiosRequestConfig
-  ) {
+  current(headers: AxiosRequestConfig) {
     return axiosInstance.get("/auth/current", headers);
   }
 }
@@ -54,6 +72,26 @@ export class AppointmentService {
 
   finish(headers: AxiosRequestConfig) {
     return axiosInstance.patch("/appointments/finish", null, headers);
+  }
+
+  getAll(
+    headers: AxiosRequestConfig,
+    params: {
+      page?: number;
+      linesPerPage?: number;
+      direction?: string;
+      orderBy?: string;
+    }
+  ) {
+    return axiosInstance.get("/appointments", {
+      ...headers,
+      params: {
+        page: params.page || 0,
+        linesPerPage: params.linesPerPage || 4,
+        direction: params.direction || "ASC",
+        orderBy: params.orderBy || "date",
+      },
+    });
   }
 
   getAllForAuthenticatedUser(
@@ -78,9 +116,87 @@ export class AppointmentService {
 }
 
 export class DoctorService {
+  create(
+    body: {
+      username: string;
+      email: string;
+      specialization: string;
+      docFees: number;
+      CRM: string;
+      password: string;
+    },
+    headers: AxiosRequestConfig
+  ) {
+    return axiosInstance.post("/doctors/register", body, headers);
+  }
+
+  update(
+    body: {
+      username: string;
+      email: string;
+      specialization: string;
+      docFees: number;
+      CRM: string;
+      password: string;
+    },
+    headers: AxiosRequestConfig,
+    email: string,
+  ) {
+    return axiosInstance.put(`/doctors/${email}`, body, headers);
+  }
+
+  delete(
+    headers: AxiosRequestConfig,
+    email: string,
+  ) {
+    return axiosInstance.delete(`/doctors/${email}`, headers);
+  }
+
   getAllBySpecialization(specialization: string, headers: AxiosRequestConfig) {
     return axiosInstance.get(`/doctors/list/${specialization}`, {
       ...headers,
+    });
+  }
+
+  getAll(
+    headers: AxiosRequestConfig,
+    params: {
+      page?: number;
+      linesPerPage?: number;
+      direction?: string;
+      orderBy?: string;
+    }
+  ) {
+    return axiosInstance.get("/doctors", {
+      ...headers,
+      params: {
+        page: params.page || 0,
+        linesPerPage: params.linesPerPage || 4,
+        direction: params.direction || "ASC",
+        orderBy: params.orderBy || "username",
+      },
+    });
+  }
+}
+
+export class PatientService {
+  getAll(
+    headers: AxiosRequestConfig,
+    params: {
+      page?: number;
+      linesPerPage?: number;
+      direction?: string;
+      orderBy?: string;
+    }
+  ) {
+    return axiosInstance.get("/patients", {
+      ...headers,
+      params: {
+        page: params.page || 0,
+        linesPerPage: params.linesPerPage || 4,
+        direction: params.direction || "ASC",
+        orderBy: params.orderBy || "firstName",
+      },
     });
   }
 }

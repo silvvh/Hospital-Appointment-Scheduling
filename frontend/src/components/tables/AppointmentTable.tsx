@@ -4,11 +4,11 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Title from "./Title";
+import Title from "../sub/dashboard/Title";
 import Button from "@mui/material/Button";
 import { AppointmentService } from "@/app/service/Services";
 import Cookies from "js-cookie";
-import CancelButton from "../buttons/CancelButton";
+import CancelButton from "../sub/buttons/CancelButton";
 import { UUID } from "crypto";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
@@ -25,7 +25,7 @@ interface Appointment {
 }
 
 const token = Cookies.get("token") || "";
-const decodedToken : DecodedToken = jwtDecode(token);
+const decodedToken : DecodedToken = jwtDecode(token, { header: true });
 const headers = {
   Authorization: `Bearer ${token}`,
   "Content-Type": "application/json",
@@ -37,7 +37,7 @@ const params = {
   orderBy: "date",
 };
 
-export default function Historic() {
+export default function AppointmentTable() {
   const [appointments, setAppointments] = React.useState<Appointment[]>([]);
   const [pageNumber, setPageNumber] = React.useState<number>(params.page);
   const service = new AppointmentService();
@@ -102,7 +102,7 @@ export default function Historic() {
 
   return (
     <React.Fragment>
-      <Title>Consultas Recentes</Title>
+      <Title>Histórico de Consultas</Title>
       <Table size="medium">
         <TableHead>
           <TableRow>

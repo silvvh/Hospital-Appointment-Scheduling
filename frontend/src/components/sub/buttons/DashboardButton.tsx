@@ -1,21 +1,23 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
-import {
-  IconButton,
-  Typography,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  TextField,
-  Button,
-} from "@mui/material";
-import LibraryAddIcon from "@mui/icons-material/LibraryAdd";
+import { IconButton, Typography } from "@mui/material";
 import Link from "next/link";
 
-export default function AppointmentButton() {
+interface DashboardButtonProps {
+  icon: React.ReactNode;
+  title: string;
+  subtitle: string;
+  link: string;
+}
 
-
+const DashboardButton: React.FC<DashboardButtonProps> = ({
+  icon,
+  title,
+  subtitle,
+  link,
+}) => {
   const theme = useTheme();
+
   return (
     <React.Fragment>
       <div
@@ -28,33 +30,35 @@ export default function AppointmentButton() {
           alignItems: "center",
         }}
       >
-        <Link href="/auth/sign-in/dashboard/book-an-appointment">
-        <IconButton
-          size="large"
-          style={{
-            backgroundColor: "#478DF7",
-            color: "white",
-            borderRadius: 8,
-          }}
-        >
-          <LibraryAddIcon fontSize="large" />
-        </IconButton>
+        <Link href={link}>
+          <IconButton
+            size="large"
+            style={{
+              backgroundColor: "#478DF7",
+              color: "white",
+              borderRadius: 8,
+            }}
+          >
+            {icon}
+          </IconButton>
         </Link>
         <Typography
           variant="subtitle1"
           style={{ marginTop: theme.spacing(1) }}
           className="font-helvetica"
         >
-          Agendar Minha Consulta
+          {title}
         </Typography>
         <Typography
           variant="caption"
           color="primary"
           style={{ marginTop: theme.spacing(1) }}
         >
-          <Link href="/auth/sign-in/dashboard/book-an-appointment">Agendar Consulta</Link>
+          <Link href={link}>{`${subtitle}`}</Link>
         </Typography>
       </div>
     </React.Fragment>
   );
-}
+};
+
+export default DashboardButton;

@@ -3,10 +3,10 @@ import * as React from "react";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import HistoricButton from "../../sub/buttons/HistoricButton";
-import Historic from "../../sub/dashboard/Historic";
 import { Copyright } from "@/utils/copyright";
-import AppointmentButton from "@/components/sub/buttons/AppointmentButton";
+import DashboardButton from "@/components/sub/buttons/DashboardButton";
+import BookIcon from '@mui/icons-material/Book';
+import Historic from "@/components/tables/AppointmentTable";
 
 export default function Doctor() {
 
@@ -22,7 +22,7 @@ export default function Doctor() {
             justifyContent: "start",
           }}
         >
-          <HistoricButton />
+            <DashboardButton icon={<BookIcon fontSize="large" />} title="Minhas Consultas" subtitle="Visualizar histórico" link="/auth/sign-in/dashboard/appointments"  />
         </Paper>
       </Grid>
       <Grid item xs={12} md={12} lg={12}>
@@ -34,7 +34,7 @@ export default function Doctor() {
             overflowX: "auto",
           }}
         >
-          <Historic />
+            <Historic />
         </Paper>
       </Grid>
     </Grid>

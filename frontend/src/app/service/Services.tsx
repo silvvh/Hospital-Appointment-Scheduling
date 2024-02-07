@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from "axios";
 import { UUID } from "crypto";
 
 export const axiosInstance = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: "http://victorhms.us-east-2.elasticbeanstalk.com:8080",
 });
 
 export class MessageService {

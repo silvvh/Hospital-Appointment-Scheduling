@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from "axios";
 import { UUID } from "crypto";
 
 export const axiosInstance = axios.create({
-  baseURL: "http://victorhms.us-east-2.elasticbeanstalk.com:8080",
+  baseURL: "https://victorhms.us-east-2.elasticbeanstalk.com:8080",
 });
 
 export function getHeaders(token: string | null): AxiosRequestConfig {

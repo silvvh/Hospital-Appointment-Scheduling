@@ -7,20 +7,15 @@ import ButtonOutline from "../../sub/buttons/ButtonOutline";
 import { useForm, Controller } from "react-hook-form";
 import { DoctorSchema, doctorSchema } from "@/utils/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Cookies from "js-cookie";
 import { mappedSpecializations } from "@/utils/specializations";
 import Title from "@/components/sub/dashboard/Title";
-import { CheckIcon } from "@heroicons/react/24/solid";
-
-const token = Cookies.get("token");
+import { useAuth } from "@/utils/authContext";
 
 export default function DoctorForm() {
+  const { token } = useAuth();
   const service = new DoctorService();
   const [success, setSuccess] = useState<boolean>(false);
 
-  const headers = {
-    Authorization: `Bearer ${token}`,
-  };
   const {
     handleSubmit,
     control,
@@ -51,7 +46,7 @@ export default function DoctorForm() {
             CRM: values.CRM,
             password: values.password,
           },
-          { headers }
+          token
         )
         .then(function (response) {
           setSuccess(true);
@@ -192,21 +187,19 @@ export default function DoctorForm() {
               )}
             />
             <div className="my-5 w-100">
-              <ButtonOutline type="submit">
-                Registrar
-              </ButtonOutline>
+              <ButtonOutline type="submit">Registrar</ButtonOutline>
             </div>
-              <Box
-                sx={{
-                  display: success ? "flex" : "none",
-                  justifyContent: "center",
-                  mt: 2,
-                }}
-              >
-                <Alert severity="success" sx={{ width: "100%" }}>
-                  <Typography align="center">Cadastro Efetuado!</Typography>
-                </Alert>
-              </Box>
+            <Box
+              sx={{
+                display: success ? "flex" : "none",
+                justifyContent: "center",
+                mt: 2,
+              }}
+            >
+              <Alert severity="success" sx={{ width: "100%" }}>
+                <Typography align="center">Cadastro Efetuado!</Typography>
+              </Alert>
+            </Box>
             <div className="bg-slate-100 flex flex-col h-0 w-0"></div>
           </Box>
         </>

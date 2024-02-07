@@ -7,13 +7,19 @@ import TableRow from "@mui/material/TableRow";
 import Title from "../sub/dashboard/Title";
 import Button from "@mui/material/Button";
 import { PatientService } from "@/app/service/Services";
-import Cookies from "js-cookie";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import { DecodedToken } from "@/components/main/dashboards/Dashboard";
-import { jwtDecode } from "jwt-decode";
-import { Box, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@mui/material";
+
+import {
+  Box,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  TextField,
+} from "@mui/material";
 import { useState } from "react";
+import { useAuth } from "@/utils/authContext";
 
 interface Patient {
   firstName: string;
@@ -23,12 +29,6 @@ interface Patient {
   cpf: string;
 }
 
-const token = Cookies.get("token") || "";
-const decodedToken: DecodedToken = jwtDecode(token, { header: true });
-const headers = {
-  Authorization: `Bearer ${token}`,
-  "Content-Type": "application/json",
-};
 const params = {
   page: 0,
   linesPerPage: 8,
@@ -37,6 +37,7 @@ const params = {
 };
 
 export default function PatientTable() {
+  const { token } = useAuth();
   const [patients, setPatients] = useState<Patient[]>([]);
   const [pageNumber, setPageNumber] = useState<number>(params.page);
   const [message, setMessage] = useState<string>("");
@@ -47,9 +48,8 @@ export default function PatientTable() {
 
   const getPatients = async (page: number) => {
     await service
-      .getAll({ headers }, { ...params, page })
+      .getAll(token, { ...params, page })
       .then(function (response) {
-        console.log(response.data.content);
         setPatients(response.data.content || []);
       })
       .catch(function (error) {
@@ -59,13 +59,15 @@ export default function PatientTable() {
 
   const getPatientByEmail = async (email: string) => {
     await service
-      .getByEmail({ headers }, email)
+      .getByEmail(token, email)
       .then(function (response) {
         setPatients([response.data]);
       })
       .catch(function (error) {
         setMessage("Email não encontrado");
-        setMessageContent("O email inserido não corresponde a nenhum paciente.");
+        setMessageContent(
+          "O email inserido não corresponde a nenhum paciente."
+        );
         getPatients(pageNumber);
         setOpenNotFoundDialog(true);
       });
@@ -83,14 +85,13 @@ export default function PatientTable() {
     getPatients(prevPage);
   };
 
-  
   const handleSearch = () => {
     getPatientByEmail(searchEmail);
   };
 
   React.useEffect(() => {
-    getPatients(pageNumber);
-  }, [pageNumber]);
+    if (token) getPatients(pageNumber);
+  }, [pageNumber, token]);
 
   return (
     <React.Fragment>
@@ -105,7 +106,7 @@ export default function PatientTable() {
           onChange={(e) => setSearchEmail(e.target.value)}
         />
         <Button
-          variant="contained"
+          variant="outlined"
           size="medium"
           sx={{ ml: 1, textTransform: "none" }}
           onClick={handleSearch}
@@ -148,9 +149,7 @@ export default function PatientTable() {
         onClose={() => setOpenNotFoundDialog(false)}
       >
         <DialogTitle>{message}</DialogTitle>
-        <DialogContent>
-          {messageContent}
-        </DialogContent>
+        <DialogContent>{messageContent}</DialogContent>
         <DialogActions>
           <Button onClick={() => setOpenNotFoundDialog(false)}>Fechar</Button>
         </DialogActions>

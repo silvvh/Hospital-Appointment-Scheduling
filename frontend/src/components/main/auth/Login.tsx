@@ -51,7 +51,9 @@ export default function SignIn() {
         .then(function (response) {
           setSuccess(true);
           const token = response.data.token;
-          Cookies.set('token', token, { sameSite: 'None', secure: true })
+          const role = response.data.role;
+          Cookies.set('token', token, { sameSite: 'None', secure: true, expires: 7})
+          Cookies.set('role', role);
           router.push("/auth/sign-in/dashboard");
         })
         .catch(function (error) {

@@ -6,10 +6,11 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import Logout from "@mui/icons-material/Logout";
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
-import EmailIcon from '@mui/icons-material/Email';
-import RecentActorsIcon from '@mui/icons-material/RecentActors';
-import ContentPasteIcon from '@mui/icons-material/ContentPaste';
+import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
+import EmailIcon from "@mui/icons-material/Email";
+import RecentActorsIcon from "@mui/icons-material/RecentActors";
+import ContentPasteIcon from "@mui/icons-material/ContentPaste";
+import Cookies from "js-cookie";
 
 export const mainItem = (
   <React.Fragment>
@@ -23,7 +24,13 @@ export const mainItem = (
 );
 
 export const exitItem = (
-  <ListItemButton href="/auth/sign-in">
+  <ListItemButton
+    href="/auth/sign-in"
+    onClick={() => {
+      Cookies.remove("token");
+      Cookies.remove("role");
+    }}
+  >
     <ListItemIcon>
       <Logout color="primary" />
     </ListItemIcon>
@@ -65,7 +72,7 @@ export const adminItems = (
     </ListItemButton>
     <ListItemButton href="/auth/sign-in/dashboard/appointments">
       <ListItemIcon>
-      <ContentPasteIcon color="primary" />
+        <ContentPasteIcon color="primary" />
       </ListItemIcon>
       <ListItemText primary="Consultas" />
     </ListItemButton>

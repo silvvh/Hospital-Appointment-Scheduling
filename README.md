@@ -4,7 +4,7 @@
 
 Aplicação web fullstack para agendamento de consultas médicas, a API foi implementada seguindo o padrão REST e a arquitetura em camadas (controllers, services e repositories).
 
-[https://workshop-springboot3-mongodb-production-f924.up.railway.app](https://workshop-springboot3-mongodb-production.up.railway.app/)
+Link: https://hospital-appointment-scheduling.vercel.app/
 
 # Tecnologias utilizadas:
 

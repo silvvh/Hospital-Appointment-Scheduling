@@ -165,16 +165,6 @@ Listagem paginada de todas as consultas existentes no sistema, exibindo dados do
 
 ---
 
-### Visualizar mensagens
-
-Listagem paginada das mensagens enviadas na página de contato.
-
---- 
-
-![image](https://github.com/silvvh/Hospital-Appointment-Scheduling/assets/116448381/81f66b8d-baee-45b2-8031-3858fa5d54ce)
-
----
-
 # Autor:
 
 Victor Hugo Brito Silva

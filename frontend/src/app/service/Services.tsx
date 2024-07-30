@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from "axios";
 import { UUID } from "crypto";
 
 export const axiosInstance = axios.create({
-  baseURL: "https://victorhms.us-east-2.elasticbeanstalk.com:8080",
+  baseURL: "http://localhost:8080",
 });
 
 export function getHeaders(token: string | null): AxiosRequestConfig {
@@ -30,7 +30,7 @@ export class MessageService {
   delete(token: string | null, id: string) {
     const headers = getHeaders(token);
     return axiosInstance.delete(`/messages/${id}`, headers);
-  };
+  }
 
   getAll(
     token: string | null,
@@ -140,10 +140,7 @@ export class AppointmentService {
 }
 
 export class DoctorService {
-  getByEmail(
-    token: string | null,
-    email: string
-  ) {
+  getByEmail(token: string | null, email: string) {
     const headers = getHeaders(token);
     return axiosInstance.get(`/doctors/${email}`, headers);
   }
@@ -217,10 +214,7 @@ export class PatientService {
     });
   }
 
-  getByEmail(
-    token: string | null,
-    email: string
-  ) {
+  getByEmail(token: string | null, email: string) {
     const headers = getHeaders(token);
     return axiosInstance.get(`/patients/${email}`, headers);
   }

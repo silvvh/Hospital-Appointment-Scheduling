@@ -1,16 +1,8 @@
-FROM ubuntu:latest AS build
+FROM maven:3.9.8-amazoncorretto-21
 
-RUN apt-get update
-RUN apt-get install openjdk-21-jdk -y
+WORKDIR /app
 COPY . .
-
-RUN apt-get install maven -y
+RUN mvn clean install
 RUN mvn clean install
 
-FROM openjdk:21-jdk-slim
-
-EXPOSE 8080
-
-COPY --from=build /target/HMS-0.0.1-SNAPSHOT.jar hms.jar
-
-ENTRYPOINT [ "java", "-jar", "hms.jar" ]
+CMD mvn spring-boot:run

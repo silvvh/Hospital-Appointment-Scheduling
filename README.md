@@ -9,25 +9,30 @@ Link: https://hospital-appointment-scheduling.vercel.app/
 # Tecnologias utilizadas:
 
 ### Back-End:
-- Spring Framework 🍃 
-  - Spring Web 
+
+- Spring Framework 🍃
+  - Spring Web
   - Spring Data JPA
-  - Spring Security 
+  - Spring Security
 - Maven 🪶
-- PostgreSQL 🐘 
+- PostgreSQL 🐘
 - JWT Token 🪙
 - Docker 🐋
+
 ### Front-End:
+
 - Next.ts
-  - React Hook Form + Zod 
+  - React Hook Form + Zod
   - Axios
-- Tailwind CSS 
+- Tailwind CSS
 - Material UI
+
 ### Deploy:
-  - AWS RDS (Banco de dados)
-  - Render (Back-end)
-  - Vercel (Front-end)
-  
+
+- AWS RDS (Banco de dados)
+- Render (Back-end)
+- Vercel (Front-end)
+
 # Funcionalidades:
 
 O sistema possui uma página inicial (/) que resume seu propósito e permite aos usuários navegarem, por meio dos botões, para as páginas de login, cadastro e mensagens para os admnistradores.
@@ -38,8 +43,7 @@ O sistema possui uma página inicial (/) que resume seu propósito e permite aos
 
 ---
 
-
-## Contato 
+## Contato
 
 Neste endpoint, que não requer autenticação, os usuários podem deixar mensagens de feedback, as quais serão acessíveis somente aos admnistradores.
 
@@ -49,8 +53,8 @@ Neste endpoint, que não requer autenticação, os usuários podem deixar mensag
 
 ---
 
+## Cadastro
 
-## Cadastro 
 Na página de cadastro, é permitido ao usuário a criação de uma conta na role de paciente, por outro lado, médicos apenas podem ser cadastrados por administradores. Caso o preenchimento dos campos ocorra conforme os requisitos, o formulário é alterado para uma mensagem de feedback indicando a criação bem sucedida da conta.
 
 ---
@@ -59,7 +63,6 @@ Na página de cadastro, é permitido ao usuário a criação de uma conta na rol
 
 ---
 
-
 ## Login
 
 Ao inserir as credenciais de login, o sistema realiza a verificação no lado do servidor, e em caso de sucesso, o token retornado pela API é persistido no contexto de autenticação e o usuário é redirecionado para o dashboard equivalante à sua role.
@@ -67,7 +70,6 @@ Ao inserir as credenciais de login, o sistema realiza a verificação no lado do
 ---
 
 ![image](https://github.com/silvvh/Hospital-Appointment-Scheduling/assets/116448381/b7a15723-229c-4750-bef2-0aa7e37b151b)
-
 
 ---
 
@@ -153,7 +155,7 @@ Ao admnistrador é permitida a operação de cadastrar um novo médico no sistem
 
 ![image](https://github.com/silvvh/Hospital-Appointment-Scheduling/assets/116448381/34b8474b-cb63-4f6b-8d53-1e6a3e21ad9d)
 
---- 
+---
 
 ### Visualizar consultas em detalhes
 
@@ -165,6 +167,31 @@ Listagem paginada de todas as consultas existentes no sistema, exibindo dados do
 
 ---
 
-# Autor:
+### Execução
+
+A aplicação está configurada para execução em Docker, minimizando surpresas. Para isso, o frontend e o backend foram separados em containers distintos. Abaixo estão os comandos necessários para executar cada parte:
+
+**OBS**: Em alguns casos, pode ser necessário executar o Docker como root.
+
+#### Frontend
+
+```
+cd frontend
+docker run -p 3000:3000 nextjs-docker
+docker build -t nextjs-docker .
+```
+
+#### Backend
+
+```
+cd backend
+docker-compose up
+```
+
+# Autor(es):
 
 Victor Hugo Brito Silva
+
+## Contribuidor(es):
+
+João Victor Briganti de Oliveira
